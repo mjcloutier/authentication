@@ -1,0 +1,16 @@
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+development: &defaults
+  database:  clarity_development
+  username:  clarity
+  password:  clarityrules
+  encoding:  utf8
+  adapter:   <%= RUBY_PLATFORM =~ /java/  ? 'mysql' : 'mysql2' %>
+  host:      127.0.0.1
+  pool:      5
+  socket: /tmp/mysql.sock
+
+test:
+  <<:       *defaults
+  database: <%= "clarity_transaction_test#{ENV['TEST_ENV_NUMBER']}" %>

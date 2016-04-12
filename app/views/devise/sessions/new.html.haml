@@ -1,0 +1,13 @@
+.auth
+  %h1 Login
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.error_notification
+
+    = f.input :username, required: false, label: false, placeholder: 'Username', autofocus: true
+    = f.input :password, required: false, label: false, placeholder: 'Password'
+    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+    = f.button :submit, 'Submit', class: 'btn btn-primary btn-block btn-large'
+
+    = render 'devise/shared/links'

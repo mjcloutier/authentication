@@ -1,0 +1,23 @@
+.auth
+  %h1
+    Edit #{resource_name.to_s.humanize}
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = f.error_notification
+
+    = f.input :name, required: true, placeholder: 'Full Name', autofocus: true
+    = f.input :email, required: true, placeholder: 'E-mail'
+
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %p
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+    = f.input :password, autocomplete: 'off', hint: 'leave it blank if you don\'t want to change it', required: false, placeholder: 'Password'
+    = f.input :password_confirmation, required: false, placeholder: 'Password Confirmation'
+    = f.input :current_password, required: true, placeholder: 'Current Password', hint: 'we need your current password to confirm your changes'
+
+    = f.button :submit, 'Sign up', class: 'btn btn-primary btn-block btn-large'
+
+    = render 'devise/shared/links'
+
+= link_to 'Back', :back

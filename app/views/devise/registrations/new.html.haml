@@ -1,0 +1,14 @@
+.auth
+  %h1 Sign up
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = f.error_notification
+
+    = f.input :name, required: true, placeholder: 'Full Name', autofocus: true
+    = f.input :email, required: true, placeholder: 'E-mail'
+    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), placeholder: 'Password'
+    = f.input :password_confirmation, required: true, placeholder: 'Password Confirmation'
+
+    = f.button :submit, 'Sign up', class: 'btn btn-primary btn-block btn-large'
+
+    = render 'devise/shared/links'

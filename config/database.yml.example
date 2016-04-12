@@ -1,0 +1,32 @@
+defaults: &defaults
+  database:
+  username:
+  encoding:
+  adapter:
+  host:
+  pool:
+  checkout_timeout:
+  reconnect:
+
+development:
+  <<: *defaults
+  username:
+  password:
+  pool:
+  database:
+
+test:
+  <<: *defaults
+  username:
+  password:
+  pool:
+  database:
+
+release:
+  <<: *defaults
+  host:
+  password:
+  slave:
+    <<: *defaults
+    host:
+    password:
